@@ -38,6 +38,14 @@ func stringFromReference(ptr uintptr) string {
 	return string(sbuf)
 }
 
+// enables the host to determine the size of a string
+//
+//go:export get_string_size
+func getStringSize(a uintptr) int {
+	char := (*C.char)(unsafe.Pointer(uintptr(a)))
+	return int(C.strlen(char))
+}
+
 //go:export allocate
 func Allocate(size int32) uintptr {
 	ptr := C.malloc(C.size_t(size))

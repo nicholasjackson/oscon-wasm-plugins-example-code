@@ -14,9 +14,9 @@ var engine *wasmer.Engine
 var module *wasmer.Module
 
 func setupWasm() {
-	//wasmBytes, err := ioutil.ReadFile("../quote-of-the-day/go/module.wasm")
+	wasmBytes, err := ioutil.ReadFile("../quote-of-the-day/go/module.wasm")
 	//wasmBytes, err := ioutil.ReadFile("../quote-of-the-day/assemblyscript/module.wasm")
-	wasmBytes, err := ioutil.ReadFile("../quote-of-the-day/rust/module.wasm")
+	//wasmBytes, err := ioutil.ReadFile("../quote-of-the-day/rust/module.wasm")
 	if err != nil {
 		log.Fatal("Unable to load Wasm module")
 	}

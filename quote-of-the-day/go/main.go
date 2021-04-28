@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/valyala/fastjson"
 )
 
@@ -20,16 +18,10 @@ func Sum(a, b int) int {
 func GetQuote() uintptr {
 	url := referenceFromString("https://quotes.rest/qod")
 	respPtr := getPayloadFromURL(url)
-
 	respStr := stringFromReference(respPtr)
-	fmt.Println("Got string")
 
-	// standard json library will not compile with tinygo
-	// keys := map[string]interface{}{}
-	//json.Unmarshal([]byte(respStr), &keys)
-	// never write code like this
-	// quote := respStr["contents"].([]map[string]interface{})[0]["quote"].(string)
-
+	// standard json library will not compile with TinyGo
+	// use fastjson as a replacement
 	// read the json and extract the quote
 	quote := fastjson.GetString([]byte(respStr), "contents", "quotes", "0", "quote")
 
